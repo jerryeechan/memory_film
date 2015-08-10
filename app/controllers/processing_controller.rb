@@ -1,0 +1,2 @@
+class ProcessingController < ApplicationController
+end
