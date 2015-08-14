@@ -8,13 +8,13 @@ class AssembleController < ApplicationController
 		canvas = params[:canvas]
 		data = canvas[:canvascontent]
 		
-		image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
+		@image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
 
-		@filepath =  Rails.root.join('tmp', 'uploads', 'film.png')
+		@filepath =  Rails.root.join('tmp', 'film.png')
 
 
 		File.open(@filepath, 'wb') do |f|
-		  f.write image_data
+		  f.write @image_data
 		end
 		@image = Image.new
 		@image[:file] = @file
