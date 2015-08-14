@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 #root 'edit#index'
 #root 'images#index'
   post '/upload' => 'assemble#upload'
+  get '/result' =>'assemble#result'
+  get '/order' =>'assemble#order'
 root 'assemble#index'
 #root 'processing#index'
 

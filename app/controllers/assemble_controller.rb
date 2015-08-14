@@ -3,6 +3,12 @@ class AssembleController < ApplicationController
 	def index
 		respond_with()
 	end
+	def order
+		OrderMailer.order_email.deliver_now!
+
+		
+    	redirect_to action:'result'
+    end
 
 	def upload
 		canvas = params[:canvas]
@@ -16,12 +22,13 @@ class AssembleController < ApplicationController
 		File.open(@filepath, 'wb') do |f|
 		  f.write @image_data
 		end
+		Tempimage.destroy_all()
 		@image = Tempimage.new
 		@image[:file] = @filepath
 		@image.save
-		redirect_to :back
+		redirect_to action: 'order'
 	end
 	def result
-
+		@images = Tempimage.all
 	end
 end
