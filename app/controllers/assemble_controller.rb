@@ -16,8 +16,8 @@ class AssembleController < ApplicationController
 		File.open(@filepath, 'wb') do |f|
 		  f.write @image_data
 		end
-		@image = Image.new
-		@image[:file] = @file
+		@image = Tempimage.new
+		@image[:file] = @filepath
 		@image.save
 		redirect_to :back
 	end
