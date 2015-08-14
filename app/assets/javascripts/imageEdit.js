@@ -6,7 +6,7 @@ var FilmEditor = function()
 	var img_y = 78;
 	var totalWidth = 0;
 	var current_film_x = 0;
-	var current_image_x = 0;
+	var current_image_x = margin_width;
 	var canvas_width;
 	var film_editor;
 	var ctx;
@@ -18,7 +18,7 @@ var FilmEditor = function()
 	filmImg = $('#filmImg').get(0);
 	$(filmImg).load(function()
 		{
-			canvas.width = 460;
+			canvas.width = 0;
 		    canvas.height = 460;
 		    ctx = canvas.getContext('2d');
 		}
@@ -47,32 +47,45 @@ var FilmEditor = function()
 	function addPhoto(image)
 	{
 		var dis = current_image_x+image.width - current_film_x;
-		var num = dis/filmImg.width;
-		
+		var num = Math.ceil(dis/filmImg.width);
+
+		console.log(num);
 		var old  = new Image();
-		old.src = canvas.toDataURL('image/png');
-		
-		$(old).load(function()
+		if(canvas.width == 0)
+		{
+			canvas.width += filmImg.width * num;
+			for (var i=0;i<num;i++)				
 			{
-				canvas.width += filmImg.width * num;
-				ctx.drawImage(old,0,0,old.width,old.height);
-				
-				for (var i=0;i<num;i++)
-				{
-					addFilmBlock();
-
-				}
-				addImage(image);
+				addFilmBlock();
 			}
-		);
+			addImage(image);
+		}
+		else
+		{
+			old.src = canvas.toDataURL('image/png');
+			$(old).load(function()
+				{
+					canvas.width += filmImg.width * num;
+					ctx.drawImage(old,0,0,old.width,old.height);
+					
+					for (var i=0;i<num;i++)
+					{
+						addFilmBlock();
+					}
+					addImage(image);
+				}
+			);
+	
+		}
 
+		
 		
 
 	}
 
 	function addFilmBlock()
 	{
-			console.log(canvas.width);
+			console.log(current_film_x);
 			ctx.drawImage(filmImg,current_film_x,0,filmImg.width, filmImg.height);
 			current_film_x+=filmImg.width;	
 	}
@@ -88,7 +101,7 @@ var FilmEditor = function()
 		var img = new Image()
 		img.src = url;
 		totalWidth += img.width;
-		ctx.drawImage(filmImg,current_film_x,0,filmImg.width, filmImg.height);
+		ctx.drawImage(filmImg,current_image_x,0,filmImg.width, filmImg.height);
 
 	}
 	function getCanvasImage()
