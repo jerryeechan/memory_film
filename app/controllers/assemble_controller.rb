@@ -10,13 +10,18 @@ class AssembleController < ApplicationController
 		
 		image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
 
-		@file =  "#{Rails.root}/public/uploads/film.png"
-		File.open(@file, 'wb') do |f|
+		@filepath =  Rails.root.join('tmp', 'uploads', 'film.png')
+
+
+		File.open(@filepath, 'wb') do |f|
 		  f.write image_data
 		end
 		@image = Image.new
 		@image[:file] = @file
 		@image.save
 		redirect_to :back
+	end
+	def result
+
 	end
 end
