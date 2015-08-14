@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<%= @image.name %>
+<p>
+  <strong>Name:</strong>
+  <%= @image.name %>
+</p>
+
+<p>
+  <strong>File:</strong>
+  <%= @image.file %>
+</p>
+
+
 <%= image_tag(@image.file) %>
 
 <%= link_to 'Edit', edit_image_path(@image) %> |

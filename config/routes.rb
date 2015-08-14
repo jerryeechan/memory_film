@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 #root 'edit#index'
-root 'images#index'
+#root 'images#index'
+  post '/upload' => 'assemble#upload'
+root 'assemble#index'
 #root 'processing#index'
 
 

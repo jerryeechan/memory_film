@@ -1,0 +1,21 @@
+
+	<%= image_tag "film.png", :id=>'filmImg'%>
+	
+	<div style="width: 600px; height: 460px; overflow: auto;">
+		<canvas id = "canvas"></canvas>
+	</div>
+	<button id = "add-image-button">addImage</button>
+	<form onsubmit="return loadImg();">
+		<input type="file" id='imgFile' multiple>
+		 <button >submit</button>
+	</form>
+
+
+	 
+	 <form method="post" action="/upload" onsubmit='return film_editor.exportImage()'>
+		<!--<input type="hidden" name="canvascontent" id="canvascontent" />-->
+		<%= hidden_field :canvas,:canvascontent %>
+		<%= submit_tag %>
+	</form>
+
+	<%= javascript_include_tag "assemble" %>

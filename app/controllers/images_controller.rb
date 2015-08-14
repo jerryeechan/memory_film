@@ -1,8 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
   respond_to :js
-
-  skip_before_filter :verify_authenticity_token, :only => :create
   # GET /images
   # GET /images.json
   def index
@@ -26,17 +24,31 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image = Image.new(image_params)
 
-    respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render :show, status: :created, location: @image }
-      else
-        format.html { render :new }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end 
-    end
+    @image = Image.new(image_params)
+    @image.save
+      respond_with(@image)
+
+
+      require 'base64'
+
+      data = params[:data_uri]
+      
+      image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
+
+      File.open("#{Rails.root}/public/uploads/somefilename.png", 'wb') do |f|
+        f.write image_data
+      end
+    #end
+    #respond_to do |format|
+    #  if @image.save
+    #    format.html { redirect_to @image, notice: 'Image was successfully created.' }
+    #    format.json { render :show, status: :created, location: @image }
+    #  else
+    #    format.html { render :new }
+    #    format.json { render json: @image.errors, status: :unprocessable_entity }
+    #  end
+    #end
   end
 
   # PATCH/PUT /images/1

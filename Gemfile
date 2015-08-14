@@ -22,7 +22,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'responders', '~> 2.0'
+
 #gem 'imagemagick-identify', '~> 0.0.1'
 #gem 'rmagick', '~>2.13.2'
 #gem 'paperclip', "~>4.2"
@@ -34,9 +34,12 @@ gem 'responders', '~> 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'responders'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'remotipart', '~> 1.2'
+gem 'mail_form'
+
 group :development, :test do
 	gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
