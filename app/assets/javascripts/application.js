@@ -12,7 +12,15 @@
 //
 
 //= require turbolinks
-//= require_tree .
+
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require page/jquery-1.11.2.min
+//= require page/retina 
+//= require page/jquery.fancybox.pack
+//= require page/jquery.flexslider-min
+//= require page/bootstrap.min
+//= require page/classie
+//= require page/jquery.waypoints.min
+//= require page/scripts

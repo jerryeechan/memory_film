@@ -10,8 +10,19 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  *= require normalize
  *= require demo
+
+ *= css/normalize.min
+
+ *= require page/bootstrap.min
+ *= require page/jquery.fancybox
+ *= require page/flexslider
+ *= require page/styles
+ *= require page/queries
+ *= require page/etline-font
+ *= require page/animate.min
+
+   
  */

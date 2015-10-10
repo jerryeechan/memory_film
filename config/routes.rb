@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   post '/upload' => 'assemble#upload'
   get '/result' =>'assemble#result'
   get '/order' =>'assemble#order'
-root 'assemble#index'
+  get '/assemble' =>'assemble#index'  
+root 'page#index'
 #root 'processing#index'
 
 

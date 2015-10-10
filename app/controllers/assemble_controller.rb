@@ -5,8 +5,6 @@ class AssembleController < ApplicationController
 	end
 	def order
 		OrderMailer.order_email.deliver_now!
-
-		
     	redirect_to action:'result'
     end
 
